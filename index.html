@@ -43,13 +43,68 @@ body {
 .ring-container { position: relative; display: flex; align-items: center; justify-content: center; }
 .ring-info h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
 .ring-info p { font-size: 13px; color: var(--text-dim); }
+
+/* Tasks */
+.tasks-section { padding: 0 20px; margin-bottom: 24px; }
+.tasks-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.tasks-title { font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.tasks-count { font-size: 13px; color: var(--text-dim); }
+.task-input-row {
+  display: flex; gap: 8px; margin-bottom: 10px;
+}
+.task-input {
+  flex: 1; background: var(--card); border: 1px solid transparent;
+  color: var(--text); padding: 14px 16px; border-radius: 14px;
+  font-size: 15px; outline: none; transition: border 0.2s;
+}
+.task-input:focus { border-color: var(--accent); }
+.task-add-btn {
+  background: var(--accent); border: none; color: #fff;
+  width: 50px; height: 50px; border-radius: 14px;
+  font-size: 24px; font-weight: 600; cursor: pointer;
+  flex-shrink: 0; transition: transform 0.15s;
+}
+.task-add-btn:active { transform: scale(0.92); }
+.task-list { display: flex; flex-direction: column; gap: 8px; }
+.task-item {
+  background: var(--card); border-radius: 14px;
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  animation: slideIn 0.3s ease; transition: opacity 0.3s;
+}
+.task-checkbox {
+  width: 24px; height: 24px; border-radius: 8px;
+  border: 2px solid var(--card-2); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: all 0.2s;
+  color: transparent; font-size: 14px; font-weight: 700;
+}
+.task-checkbox.checked {
+  background: var(--green); border-color: var(--green); color: #fff;
+}
+.task-text {
+  flex: 1; font-size: 15px; transition: all 0.3s;
+  word-break: break-word;
+}
+.task-item.done .task-text {
+  color: var(--text-dim); text-decoration: line-through;
+}
+.task-delete {
+  background: none; border: none; color: var(--text-dim);
+  font-size: 20px; cursor: pointer; padding: 4px 8px;
+  flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s;
+}
+.task-delete:active { opacity: 1; }
+
+/* Habits */
 .habits { padding: 0 20px; }
 .habit-card {
   background: var(--card); border-radius: var(--radius);
   padding: 16px; margin-bottom: 12px;
   display: flex; align-items: center; gap: 14px;
-  transition: transform 0.2s;
-  animation: slideIn 0.3s ease;
+  transition: transform 0.2s; animation: slideIn 0.3s ease;
 }
 @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .habit-card:active { transform: scale(0.98); }
@@ -71,8 +126,10 @@ body {
 .habit-action:active { transform: scale(0.9); }
 .habit-action.done { background: var(--green); color: #fff; }
 .habit-action.plus { font-size: 22px; }
-.empty { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 15px; }
-.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty { text-align: center; padding: 30px 20px; color: var(--text-dim); font-size: 15px; }
+.empty-icon { font-size: 42px; margin-bottom: 10px; opacity: 0.5; }
+
+/* Nav */
 .nav {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: rgba(26,26,34,0.95);
@@ -90,6 +147,14 @@ body.light .nav { background: rgba(255,255,255,0.95); border-top: 1px solid rgba
 }
 .nav-item.active { color: var(--accent); }
 .nav-icon { font-size: 22px; }
+.nav-add .nav-icon {
+  background: var(--accent); color: #fff;
+  width: 38px; height: 38px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 600;
+}
+
+/* Screens */
 .screen { display: none; }
 .screen.active { display: block; }
 .stats { padding: 0 20px; }
@@ -113,6 +178,8 @@ body.light .nav { background: rgba(255,255,255,0.95); border-top: 1px solid rgba
 .heat-cell.l2 { background: rgba(91,141,239,0.55); }
 .heat-cell.l3 { background: rgba(91,141,239,0.8); }
 .heat-cell.l4 { background: #5b8def; }
+
+/* Books */
 .book-item {
   background: var(--card-2); border-radius: 14px; padding: 14px;
   margin-bottom: 8px; display: flex; align-items: center; gap: 12px;
@@ -131,9 +198,10 @@ body.light .nav { background: rgba(255,255,255,0.95); border-top: 1px solid rgba
   font-size: 12px; font-weight: 600; cursor: pointer;
 }
 .book-btn:active { transform: scale(0.95); }
+
+/* Modal */
 .modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6);
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   z-index: 200; display: none; align-items: flex-end;
   animation: fadeIn 0.2s;
@@ -154,7 +222,7 @@ body.light .nav { background: rgba(255,255,255,0.95); border-top: 1px solid rgba
   width: 100%; background: var(--card-2);
   border: 1px solid rgba(255,255,255,0.06); color: var(--text);
   padding: 16px; border-radius: 14px; font-size: 16px;
-  margin-bottom: 12px; outline: none; transition: border 0.2s;
+  margin-bottom: 12px; outline: none;
 }
 body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
 .modal-input:focus { border-color: var(--accent); }
@@ -175,15 +243,6 @@ body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
 .btn:active { transform: scale(0.98); }
 .btn.secondary { background: var(--card-2); color: var(--text); }
 .btn.danger { background: rgba(255,69,58,0.15); color: var(--red); }
-.fab {
-  position: fixed; bottom: 100px; right: 20px;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--accent); color: #fff; border: none;
-  font-size: 28px; cursor: pointer;
-  box-shadow: 0 8px 24px rgba(91,141,239,0.4);
-  z-index: 50; transition: transform 0.2s;
-}
-.fab:active { transform: scale(0.9); }
 .toast {
   position: fixed; top: 20px; left: 50%;
   transform: translateX(-50%) translateY(-100px);
@@ -202,6 +261,7 @@ body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
     <h1 id="greeting">Привет!</h1>
     <div class="date" id="dateLabel"></div>
   </div>
+
   <div class="today-ring">
     <div class="ring-container">
       <svg width="80" height="80" viewBox="0 0 80 80">
@@ -217,9 +277,22 @@ body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
     </div>
     <div class="ring-info">
       <h3>Прогресс дня</h3>
-      <p id="ringHint">Добавь первую привычку →</p>
+      <p id="ringHint">Отмечай привычки и задачи</p>
     </div>
   </div>
+
+  <div class="tasks-section">
+    <div class="tasks-header">
+      <div class="tasks-title">Задачи на сегодня</div>
+      <div class="tasks-count" id="tasksCount"></div>
+    </div>
+    <div class="task-input-row">
+      <input class="task-input" id="taskInput" placeholder="Что нужно сделать?" maxlength="120">
+      <button class="task-add-btn" onclick="addTask()">+</button>
+    </div>
+    <div class="task-list" id="taskList"></div>
+  </div>
+
   <div class="habits" id="habitsList"></div>
 </div>
 
@@ -231,11 +304,12 @@ body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
   <div class="stats" id="statsContent"></div>
 </div>
 
-<button class="fab" id="fab" onclick="openAddModal()">+</button>
-
 <nav class="nav">
   <button class="nav-item active" data-screen="today" onclick="switchScreen('today')">
     <span class="nav-icon">🏠</span><span>Сегодня</span>
+  </button>
+  <button class="nav-item nav-add" onclick="openAddModal()">
+    <span class="nav-icon">+</span><span>Добавить</span>
   </button>
   <button class="nav-item" data-screen="stats" onclick="switchScreen('stats')">
     <span class="nav-icon">📊</span><span>Статистика</span>
@@ -251,13 +325,13 @@ body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
 <div class="toast" id="toast"></div>
 
 <script>
-const tg = window.Telegram?.WebApp;
+  const tg = window.Telegram?.WebApp;
 if (tg) { tg.ready(); tg.expand(); tg.setHeaderColor?.('#0f0f14'); tg.setBackgroundColor?.('#0f0f14'); }
 if (tg?.colorScheme === 'light' || (!tg && window.matchMedia('(prefers-color-scheme: light)').matches)) {
   document.body.classList.add('light');
 }
 
-const STORAGE_KEY = 'ritm_tracker_v2';
+const STORAGE_KEY = 'ritm_tracker_v3';
 let state = load();
 
 function load() {
@@ -265,7 +339,7 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw);
   } catch(e) {}
-  return { habits: [], books: [], initialized: false };
+  return { habits: [], books: [], tasks: [], initialized: false };
 }
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -289,17 +363,17 @@ function haptic(type) {
 }
 
 const CATEGORIES = {
-  income:  { label: 'Доход',       icon: '💰', color: '#34c759', type: 'money',  bg: 'rgba(52,199,89,0.15)' },
-  expense: { label: 'Расход',      icon: '💸', color: '#ff453a', type: 'money',  bg: 'rgba(255,69,58,0.15)' },
-  savings: { label: 'Отложено',    icon: '🏦', color: '#5b8def', type: 'money',  bg: 'rgba(91,141,239,0.15)' },
-  workout: { label: 'Тренировка',  icon: '💪', color: '#ff9f0a', type: 'check',  bg: 'rgba(255,159,10,0.15)' },
-  english: { label: 'Английский',  icon: '🇬🇧', color: '#0a84ff', type: 'check',  bg: 'rgba(10,132,255,0.15)' },
-  skill:   { label: 'Новый навык', icon: '🧠', color: '#bf5af2', type: 'check',  bg: 'rgba(191,90,242,0.15)' },
-  reading: { label: 'Чтение',      icon: '📖', color: '#0a84ff', type: 'number', bg: 'rgba(10,132,255,0.15)' },
-  books:   { label: 'Книги',       icon: '📚', color: '#bf5af2', type: 'books',  bg: 'rgba(191,90,242,0.15)' },
+  income:  { label: 'Доход',       icon: '💰', type: 'money',  bg: 'rgba(52,199,89,0.15)' },
+  expense: { label: 'Расход',      icon: '💸', type: 'money',  bg: 'rgba(255,69,58,0.15)' },
+  savings: { label: 'Отложено',    icon: '🏦', type: 'money',  bg: 'rgba(91,141,239,0.15)' },
+  workout: { label: 'Тренировка',  icon: '💪', type: 'check',  bg: 'rgba(255,159,10,0.15)' },
+  english: { label: 'Английский',  icon: '🇬🇧', type: 'check',  bg: 'rgba(10,132,255,0.15)' },
+  skill:   { label: 'Новый навык', icon: '🧠', type: 'check',  bg: 'rgba(191,90,242,0.15)' },
+  reading: { label: 'Чтение',      icon: '📖', type: 'number', bg: 'rgba(10,132,255,0.15)' },
+  books:   { label: 'Книги',       icon: '📚', type: 'books',  bg: 'rgba(191,90,242,0.15)' },
 };
 
-function uid() { return 'h_' + Date.now() + '_' + Math.random().toString(36).slice(2,7); }
+function uid() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2,7); }
 
 function initDefaults() {
   if (state.initialized) return;
@@ -341,10 +415,56 @@ function plural(n, one, few, many) {
   return many;
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-  function renderToday() {
+
+// === TASKS ===
+function getTodayTasks() {
+  return state.tasks.filter(t => t.date === todayKey());
+}
+function renderTasks() {
+  const tasks = getTodayTasks();
+  const list = document.getElementById('taskList');
+  const counter = document.getElementById('tasksCount');
+  const done = tasks.filter(t => t.done).length;
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="empty" style="padding:16px 0;font-size:13px">Нет задач на сегодня. Добавь первую ↓</div>';
+    counter.textContent = '';
+  } else {
+    list.innerHTML = tasks.map(t =>
+      '<div class="task-item ' + (t.done ? 'done' : '') + '">' +
+        '<div class="task-checkbox ' + (t.done ? 'checked' : '') + '" onclick="toggleTask(\'' + t.id + '\')">' + (t.done ? '✓' : '') + '</div>' +
+        '<div class="task-text">' + escapeHtml(t.text) + '</div>' +
+        '<button class="task-delete" onclick="deleteTask(\'' + t.id + '\')">×</button>' +
+      '</div>'
+    ).join('');
+    counter.textContent = done + ' / ' + tasks.length;
+  }
+  updateRing();
+}
+function addTask() {
+  const inp = document.getElementById('taskInput');
+  const text = inp.value.trim();
+  if (!text) return;
+  state.tasks.push({ id: uid(), text: text, date: todayKey(), done: false, created: Date.now() });
+  inp.value = '';
+  save(); haptic('success'); renderTasks();
+}
+function toggleTask(id) {
+  const t = state.tasks.find(x => x.id === id);
+  if (!t) return;
+  t.done = !t.done;
+  if (t.done) { t.doneAt = todayKey(); haptic('success'); } else { delete t.doneAt; haptic('light'); }
+  save(); renderTasks();
+}
+function deleteTask(id) {
+  state.tasks = state.tasks.filter(x => x.id !== id);
+  save(); renderTasks();
+}
+
+// === HABITS ===
+function renderToday() {
   const list = document.getElementById('habitsList');
   if (!state.habits.length) {
-    list.innerHTML = '<div class="empty"><div class="empty-icon">✨</div><div>Пока нет привычек</div><div style="font-size:13px;margin-top:6px">Нажми + внизу, чтобы добавить</div></div>';
+    list.innerHTML = '<div class="empty"><div class="empty-icon">✨</div><div>Пока нет привычек</div></div>';
     updateRing();
     return;
   }
@@ -405,6 +525,7 @@ function updateRing() {
   else hint.textContent = 'Начни отмечать выполнение';
 }
 
+// === STATS ===
 function renderStats() {
   const c = document.getElementById('statsContent');
   if (!state.habits.length) {
@@ -421,8 +542,12 @@ function renderStats() {
   const skills = daysBy('skill');
   const pages = sumBy('reading');
   const booksRead = state.books.filter(b => b.status === 'read').length;
+  const tasksDoneAll = state.tasks.filter(t => t.done).length;
 
   let html = '';
+  html += '<div class="section-title">Задачи</div><div class="stat-grid">';
+  html += '<div class="stat-card wide"><div class="stat-label">Выполнено задач за всё время</div><div class="stat-value accent">' + tasksDoneAll + '</div></div>';
+  html += '</div>';
 
   if (incomes || expenses || savings) {
     html += '<div class="section-title">Финансы</div><div class="stat-grid">';
@@ -452,6 +577,7 @@ function renderStats() {
     html += '<div class="section-title">Тепловая карта за 3 месяца</div><div class="heatmap"><div class="heatmap-grid">';
     const dayCounts = {};
     state.habits.forEach(h => getEntries(h).forEach(e => { dayCounts[e.date] = (dayCounts[e.date] || 0) + 1; }));
+    state.tasks.forEach(t => { if (t.done && t.doneAt) dayCounts[t.doneAt] = (dayCounts[t.doneAt] || 0) + 1; });
     const today = new Date();
     const start = new Date(today);
     start.setDate(start.getDate() - 89);
@@ -474,6 +600,7 @@ function renderStats() {
   c.innerHTML = html;
 }
 
+// === HABIT ACTIONS ===
 function toggleCheck(id) {
   const h = state.habits.find(x => x.id === id);
   if (!h) return;
@@ -542,6 +669,7 @@ function deleteToday(id) {
   save(); closeModal(); renderToday(); toast('Обнулено');
 }
 
+// === ADD HABIT MODAL ===
 let selectedType = null;
 function openAddModal() {
   selectedType = null;
@@ -582,6 +710,7 @@ function saveHabit() {
   toast('Привычка добавлена');
 }
 
+// === BOOKS ===
 function openBooksModal() {
   renderBooksModal();
   document.getElementById('modal').classList.add('active');
@@ -627,10 +756,11 @@ function deleteBook(i) {
   save(); renderBooksModal(); renderToday();
 }
 
+// === NAVIGATION ===
 function switchScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(name + 'Screen').classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.screen === name));
+  document.querySelectorAll('.nav-item[data-screen]').forEach(n => n.classList.toggle('active', n.dataset.screen === name));
   if (name === 'stats') renderStats();
   else renderToday();
   haptic('light');
@@ -642,6 +772,7 @@ function closeModal(e) {
   document.getElementById('modal').classList.remove('active');
 }
 
+// === INIT ===
 const dateLabel = document.getElementById('dateLabel');
 if (dateLabel) dateLabel.textContent = new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
 const hour = new Date().getHours();
@@ -652,7 +783,13 @@ else if (hour < 18) greet = 'Добрый день';
 else greet = 'Добрый вечер';
 document.getElementById('greeting').textContent = greet;
 
+// Enter для добавления задачи
+document.getElementById('taskInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); addTask(); }
+});
+
 initDefaults();
+renderTasks();
 renderToday();
 </script>
 </body>
