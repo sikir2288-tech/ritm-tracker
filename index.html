@@ -7,70 +7,36 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root {
-    --bg: #0f0f14;
-    --card: #1a1a22;
-    --card-2: #23232e;
-    --text: #ffffff;
-    --text-dim: #8a8a99;
-    --accent: #5b8def;
-    --green: #34c759;
-    --red: #ff453a;
-    --orange: #ff9f0a;
-    --purple: #bf5af2;
-    --blue: #0a84ff;
-    --radius: 18px;
+    --bg: #0f0f14; --card: #1a1a22; --card-2: #23232e;
+    --text: #fff; --text-dim: #8a8a99; --accent: #5b8def;
+    --green: #34c759; --red: #ff453a; --orange: #ff9f0a;
+    --purple: #bf5af2; --blue: #0a84ff; --radius: 18px;
   }
   body.light {
-    --bg: #f2f2f7;
-    --card: #ffffff;
-    --card-2: #f2f2f7;
-    --text: #000000;
-    --text-dim: #8e8e93;
+    --bg: #f2f2f7; --card: #fff; --card-2: #f2f2f7;
+    --text: #000; --text-dim: #8e8e93;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding-bottom: 90px;
-    overflow-x: hidden;
+    background: var(--bg); color: var(--text);
+    padding-bottom: 90px; overflow-x: hidden;
     transition: background 0.3s, color 0.3s;
   }
-  .header {
-    padding: 24px 20px 12px;
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  .header .date {
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-top: 4px;
-  }
+  .header { padding: 24px 20px 12px; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .date { color: var(--text-dim); font-size: 14px; margin-top: 4px; }
   .today-ring {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin: 12px 20px 20px;
+    display: flex; align-items: center; gap: 20px;
+    background: var(--card); border-radius: var(--radius);
+    padding: 20px; margin: 12px 20px 20px;
   }
   .ring-svg { flex-shrink: 0; }
-  .ring-progress {
-    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  .ring-progress { transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
   .ring-text-wrap {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
+    position: absolute; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; width: 80px; height: 80px;
   }
   .ring-number { font-size: 22px; font-weight: 700; }
   .ring-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
@@ -79,109 +45,56 @@
   .ring-info p { font-size: 13px; color: var(--text-dim); }
   .habits { padding: 0 20px; }
   .habit-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    transition: transform 0.2s, background 0.2s;
+    background: var(--card); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 14px;
+    transition: transform 0.2s;
     animation: slideIn 0.3s ease;
   }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   .habit-card:active { transform: scale(0.98); }
   .habit-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
+    width: 46px; height: 46px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
   }
   .habit-body { flex: 1; min-width: 0; }
   .habit-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
   .habit-sub { font-size: 13px; color: var(--text-dim); }
-  .habit-streak { color: var(--orange); }
   .habit-action {
-    background: var(--card-2);
-    border: none;
-    color: var(--text);
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--card-2); border: none; color: var(--text);
+    width: 44px; height: 44px; border-radius: 12px;
+    font-size: 20px; font-weight: 600; cursor: pointer;
+    flex-shrink: 0; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
   }
   .habit-action:active { transform: scale(0.9); }
-  .habit-action.done {
-    background: var(--green);
-    color: white;
-  }
+  .habit-action.done { background: var(--green); color: #fff; }
   .habit-action.plus { font-size: 22px; }
-  .empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-dim);
-    font-size: 15px;
-  }
+  .empty { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 15px; }
   .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
-  /* Bottom nav */
   .nav {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(26, 26, 34, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(26,26,34,0.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+    display: flex; padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
     z-index: 100;
   }
   body.light .nav { background: rgba(255,255,255,0.95); border-top: 1px solid rgba(0,0,0,0.06); }
   .nav-item {
-    flex: 1;
-    background: none;
-    border: none;
-    color: var(--text-dim);
-    font-size: 11px;
-    padding: 8px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    flex: 1; background: none; border: none; color: var(--text-dim);
+    font-size: 11px; padding: 8px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     transition: color 0.2s;
   }
   .nav-item.active { color: var(--accent); }
   .nav-icon { font-size: 22px; }
-  /* Stats */
-  .stats { padding: 0 20px; display: none; }
-  .stats.active { display: block; }
-  .today.active { display: block; }
-  .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .stat-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 16px;
-    animation: slideIn 0.3s ease;
-  }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .stats { padding: 0 20px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: var(--card); border-radius: var(--radius); padding: 16px; animation: slideIn 0.3s ease; }
   .stat-card.wide { grid-column: span 2; }
   .stat-label { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
   .stat-value { font-size: 22px; font-weight: 700; }
@@ -190,183 +103,93 @@
   .stat-value.accent { color: var(--accent); }
   .stat-sub { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
   .section-title {
-    font-size: 13px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 24px 0 12px;
-    padding: 0 20px;
+    font-size: 13px; color: var(--text-dim); text-transform: uppercase;
+    letter-spacing: 1px; margin: 24px 0 12px;
   }
-  /* Heatmap */
-  .heatmap {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 20px;
-    overflow-x: auto;
-  }
-  .heatmap-grid {
-    display: grid;
-    grid-template-rows: repeat(7, 12px);
-    grid-auto-flow: column;
-    gap: 3px;
-  }
-  .heat-cell {
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    background: var(--card-2);
-  }
+  .heatmap { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; overflow-x: auto; }
+  .heatmap-grid { display: grid; grid-template-rows: repeat(7, 12px); grid-auto-flow: column; gap: 3px; }
+  .heat-cell { width: 12px; height: 12px; border-radius: 3px; background: var(--card-2); }
   .heat-cell.l1 { background: rgba(91,141,239,0.3); }
   .heat-cell.l2 { background: rgba(91,141,239,0.55); }
   .heat-cell.l3 { background: rgba(91,141,239,0.8); }
   .heat-cell.l4 { background: #5b8def; }
-  /* Books */
   .book-item {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    background: var(--card); border-radius: 14px; padding: 14px;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 12px;
   }
   .book-cover {
-    width: 36px; height: 48px;
-    border-radius: 6px;
+    width: 36px; height: 48px; border-radius: 6px;
     background: linear-gradient(135deg, var(--blue), var(--purple));
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+    font-size: 18px; flex-shrink: 0;
   }
   .book-title { font-size: 14px; font-weight: 600; }
   .book-status { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
   .book-btn {
-    margin-left: auto;
-    background: var(--card-2);
-    border: none;
-    color: var(--accent);
-    padding: 8px 12px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
+    margin-left: auto; background: var(--card-2); border: none;
+    color: var(--accent); padding: 8px 12px; border-radius: 10px;
+    font-size: 12px; font-weight: 600; cursor: pointer;
   }
   .book-btn:active { transform: scale(0.95); }
-  /* Modal */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 200;
-    display: none;
-    align-items: flex-end;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    z-index: 200; display: none; align-items: flex-end;
     animation: fadeIn 0.2s;
   }
   .modal-overlay.active { display: flex; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .modal {
-    background: var(--card);
-    width: 100%;
+    background: var(--card); width: 100%;
     border-radius: 24px 24px 0 0;
     padding: 24px 20px calc(24px + env(safe-area-inset-bottom));
     animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 90vh; overflow-y: auto;
   }
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
   .modal h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
   .modal .sub { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
   .modal-input {
-    width: 100%;
-    background: var(--card-2);
-    border: 1px solid rgba(255,255,255,0.06);
-    color: var(--text);
-    padding: 16px;
-    border-radius: 14px;
-    font-size: 16px;
-    margin-bottom: 12px;
-    outline: none;
-    transition: border 0.2s;
+    width: 100%; background: var(--card-2);
+    border: 1px solid rgba(255,255,255,0.06); color: var(--text);
+    padding: 16px; border-radius: 14px; font-size: 16px;
+    margin-bottom: 12px; outline: none; transition: border 0.2s;
   }
   body.light .modal-input { border: 1px solid rgba(0,0,0,0.08); }
   .modal-input:focus { border-color: var(--accent); }
-  .type-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
   .type-btn {
-    background: var(--card-2);
-    border: 2px solid transparent;
-    color: var(--text);
-    padding: 14px;
-    border-radius: 14px;
-    font-size: 13px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
+    background: var(--card-2); border: 2px solid transparent; color: var(--text);
+    padding: 14px; border-radius: 14px; font-size: 13px; cursor: pointer;
+    text-align: left; transition: all 0.2s;
   }
   .type-btn.selected { border-color: var(--accent); background: rgba(91,141,239,0.1); }
   .type-btn .emoji { font-size: 20px; display: block; margin-bottom: 4px; }
   .type-btn .label { font-weight: 600; }
   .btn {
-    width: 100%;
-    background: var(--accent);
-    border: none;
-    color: white;
-    padding: 16px;
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: transform 0.2s;
+    width: 100%; background: var(--accent); border: none; color: #fff;
+    padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 600;
+    cursor: pointer; margin-top: 8px; transition: transform 0.2s;
   }
   .btn:active { transform: scale(0.98); }
-  .btn.secondary {
-    background: var(--card-2);
-    color: var(--text);
-  }
-  .btn.danger {
-    background: rgba(255,69,58,0.15);
-    color: var(--red);
-  }
+  .btn.secondary { background: var(--card-2); color: var(--text); }
+  .btn.danger { background: rgba(255,69,58,0.15); color: var(--red); }
   .fab {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: white;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
+    position: fixed; bottom: 100px; right: 20px;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #fff; border: none;
+    font-size: 28px; cursor: pointer;
     box-shadow: 0 8px 24px rgba(91,141,239,0.4);
-    z-index: 50;
-    transition: transform 0.2s;
+    z-index: 50; transition: transform 0.2s;
   }
   .fab:active { transform: scale(0.9); }
   .toast {
-    position: fixed;
-    top: 20px;
-    left: 50%;
+    position: fixed; top: 20px; left: 50%;
     transform: translateX(-50%) translateY(-100px);
-    background: var(--card-2);
-    color: var(--text);
-    padding: 12px 20px;
-    border-radius: 14px;
-    font-size: 14px;
-    font-weight: 600;
-    z-index: 300;
+    background: var(--card-2); color: var(--text);
+    padding: 12px 20px; border-radius: 14px;
+    font-size: 14px; font-weight: 600; z-index: 300;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
@@ -374,8 +197,7 @@
 </style>
 </head>
 <body>
-
-<div class="today active" id="todayScreen">
+  <div class="screen active" id="todayScreen">
   <div class="header">
     <h1 id="greeting">Привет!</h1>
     <div class="date" id="dateLabel"></div>
@@ -401,24 +223,22 @@
   <div class="habits" id="habitsList"></div>
 </div>
 
-<div class="stats" id="statsScreen">
+<div class="screen" id="statsScreen">
   <div class="header">
     <h1>Статистика</h1>
     <div class="date">Все итоги за всё время</div>
   </div>
-  <div class="stats" id="statsContent" style="display:block; padding:0 20px;"></div>
+  <div class="stats" id="statsContent"></div>
 </div>
 
 <button class="fab" id="fab" onclick="openAddModal()">+</button>
 
 <nav class="nav">
   <button class="nav-item active" data-screen="today" onclick="switchScreen('today')">
-    <span class="nav-icon">🏠</span>
-    <span>Сегодня</span>
+    <span class="nav-icon">🏠</span><span>Сегодня</span>
   </button>
   <button class="nav-item" data-screen="stats" onclick="switchScreen('stats')">
-    <span class="nav-icon">📊</span>
-    <span>Статистика</span>
+    <span class="nav-icon">📊</span><span>Статистика</span>
   </button>
 </nav>
 
@@ -429,38 +249,26 @@
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script>
-// === Telegram ===
 const tg = window.Telegram?.WebApp;
 if (tg) { tg.ready(); tg.expand(); tg.setHeaderColor?.('#0f0f14'); tg.setBackgroundColor?.('#0f0f14'); }
-
-// Light theme detection
 if (tg?.colorScheme === 'light' || (!tg && window.matchMedia('(prefers-color-scheme: light)').matches)) {
   document.body.classList.add('light');
 }
 
-// === Storage ===
 const STORAGE_KEY = 'ritm_tracker_v1';
 let state = load();
-
 function load() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch(e) {}
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) return JSON.parse(raw); } catch(e) {}
   return { habits: [], books: [] };
 }
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
-// === Utils ===
 function todayKey() {
   const d = new Date();
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
-function formatMoney(n) {
-  return new Intl.NumberFormat('ru-RU').format(Math.round(n)) + ' ₽';
-}
+function formatMoney(n) { return new Intl.NumberFormat('ru-RU').format(Math.round(n)) + ' ₽'; }
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -473,79 +281,60 @@ function haptic(type) {
   else tg.HapticFeedback.impactOccurred('light');
 }
 
-// === Categories ===
 const CATEGORIES = {
-  income:    { label: 'Доход',        icon: '💰', color: '#34c759', type: 'money',     bg: 'rgba(52,199,89,0.15)' },
-  expense:   { label: 'Расход',       icon: '💸', color: '#ff453a', type: 'money',     bg: 'rgba(255,69,58,0.15)' },
-  savings:   { label: 'Отложено',     icon: '🏦', color: '#5b8def', type: 'money',     bg: 'rgba(91,141,239,0.15)' },
-  workout:   { label: 'Тренировка',   icon: '💪', color: '#ff9f0a', type: 'check',     bg: 'rgba(255,159,10,0.15)' },
-  english:   { label: 'Английский',   icon: '🇬🇧', color: '#0a84ff', type: 'check',     bg: 'rgba(10,132,255,0.15)' },
-  skill:     { label: 'Новый навык',  icon: '🧠', color: '#bf5af2', type: 'check',     bg: 'rgba(191,90,242,0.15)' },
-  reading:   { label: 'Чтение',       icon: '📖', color: '#0a84ff', type: 'number',    bg: 'rgba(10,132,255,0.15)' },
-  books:     { label: 'Книги',        icon: '📚', color: '#bf5af2', type: 'books',     bg: 'rgba(191,90,242,0.15)' },
+  income:  { label: 'Доход',       icon: '💰', color: '#34c759', type: 'money',  bg: 'rgba(52,199,89,0.15)' },
+  expense: { label: 'Расход',      icon: '💸', color: '#ff453a', type: 'money',  bg: 'rgba(255,69,58,0.15)' },
+  savings: { label: 'Отложено',    icon: '🏦', color: '#5b8def', type: 'money',  bg: 'rgba(91,141,239,0.15)' },
+  workout: { label: 'Тренировка',  icon: '💪', color: '#ff9f0a', type: 'check',  bg: 'rgba(255,159,10,0.15)' },
+  english: { label: 'Английский',  icon: '🇬🇧', color: '#0a84ff', type: 'check',  bg: 'rgba(10,132,255,0.15)' },
+  skill:   { label: 'Новый навык', icon: '🧠', color: '#bf5af2', type: 'check',  bg: 'rgba(191,90,242,0.15)' },
+  reading: { label: 'Чтение',      icon: '📖', color: '#0a84ff', type: 'number', bg: 'rgba(10,132,255,0.15)' },
+  books:   { label: 'Книги',       icon: '📚', color: '#bf5af2', type: 'books',  bg: 'rgba(191,90,242,0.15)' },
 };
 
-// === Stats helpers ===
-function getEntries(habit) {
-  if (!habit.entries) habit.entries = [];
-  return habit.entries;
-}
-function hasToday(habit) {
-  return getEntries(habit).some(e => e.date === todayKey());
-}
-function getTodayValue(habit) {
-  const e = getEntries(habit).find(e => e.date === todayKey());
-  return e ? e.value : null;
-}
-function getTotal(habit) {
-  return getEntries(habit).reduce((sum, e) => sum + (typeof e.value === 'number' ? e.value : 1), 0);
-}
-function getDaysCount(habit) {
-  return getEntries(habit).length;
-}
-function getStreak(habit) {
-  const entries = getEntries(habit).slice().sort((a,b) => b.date.localeCompare(a.date));
+function getEntries(h) { if (!h.entries) h.entries = []; return h.entries; }
+function hasToday(h) { return getEntries(h).some(e => e.date === todayKey()); }
+function getTodayValue(h) { const e = getEntries(h).find(e => e.date === todayKey()); return e ? e.value : null; }
+function getTotal(h) { return getEntries(h).reduce((s,e) => s + (typeof e.value === 'number' ? e.value : 1), 0); }
+function getDaysCount(h) { return getEntries(h).length; }
+function getStreak(h) {
+  const entries = getEntries(h).slice().sort((a,b) => b.date.localeCompare(a.date));
   if (!entries.length) return 0;
   const dates = new Set(entries.map(e => e.date));
   let streak = 0;
   let d = new Date();
-  // If today not marked, start from yesterday
-  if (!dates.has(todayKey())) {
-    d.setDate(d.getDate() - 1);
-  }
+  if (!dates.has(todayKey())) d.setDate(d.getDate() - 1);
   while (true) {
     const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-    if (dates.has(key)) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else break;
+    if (dates.has(key)) { streak++; d.setDate(d.getDate() - 1); } else break;
   }
   return streak;
 }
 
-// === Render Today ===
+function plural(n, one, few, many) {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+  return many;
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// === Today screen ===
 function renderToday() {
   const list = document.getElementById('habitsList');
   if (!state.habits.length) {
-    list.innerHTML = `
-      <div class="empty">
-        <div class="empty-icon">✨</div>
-        <div>Пока нет привычек</div>
-        <div style="font-size:13px;margin-top:6px">Нажми + внизу, чтобы добавить</div>
-      </div>`;
+    list.innerHTML = `<div class="empty"><div class="empty-icon">✨</div><div>Пока нет привычек</div><div style="font-size:13px;margin-top:6px">Нажми + внизу, чтобы добавить</div></div>`;
     updateRing();
     return;
   }
-  list.innerHTML = state.habits.map((h, i) => {
+  list.innerHTML = state.habits.map(h => {
     const cat = CATEGORIES[h.category] || CATEGORIES.skill;
     const done = hasToday(h);
     const todayVal = getTodayValue(h);
     const total = getTotal(h);
     const streak = getStreak(h);
     const days = getDaysCount(h);
-
-    let sub = '';
-    let actionHtml = '';
+    let sub = '', actionHtml = '';
 
     if (h.category === 'books') {
       const read = state.books.filter(b => b.status === 'read').length;
@@ -554,33 +343,24 @@ function renderToday() {
       actionHtml = `<button class="habit-action plus" onclick="openBooksModal()">📚</button>`;
     } else if (cat.type === 'money') {
       sub = `Всего: ${formatMoney(total)}${days ? ' · ' + days + ' дн.' : ''}`;
-      if (todayVal !== null && todayVal !== undefined) {
-        sub = `Сегодня: ${formatMoney(todayVal)} · Всего: ${formatMoney(total)}`;
-        actionHtml = `<button class="habit-action done" onclick="addMoney('${h.id}')">✓</button>`;
-      } else {
-        actionHtml = `<button class="habit-action plus" onclick="addMoney('${h.id}')">+</button>`;
-      }
+      actionHtml = `<button class="habit-action ${todayVal !== null ? 'done' : 'plus'}" onclick="addMoney('${h.id}')">${todayVal !== null ? '✓' : '+'}</button>`;
+      if (todayVal !== null) sub = `Сегодня: ${formatMoney(todayVal)} · Всего: ${formatMoney(total)}`;
     } else if (cat.type === 'check') {
-      sub = done
-        ? `🔥 ${streak} ${plural(streak, 'день', 'дня', 'дней')} подряд · Всего: ${days}`
-        : `${days ? 'Отмечено: ' + days + ' ' + plural(days, 'день', 'дня', 'дней') : 'Ещё не отмечено'}`;
+      sub = done ? `🔥 ${streak} ${plural(streak,'день','дня','дней')} подряд · Всего: ${days}` : (days ? `Отмечено: ${days} ${plural(days,'день','дня','дней')}` : 'Ещё не отмечено');
       actionHtml = `<button class="habit-action ${done ? 'done' : ''}" onclick="toggleCheck('${h.id}')">${done ? '✓' : ''}</button>`;
     } else if (cat.type === 'number') {
-      sub = todayVal
-        ? `Сегодня: ${todayVal} ${h.unit || ''} · Всего: ${total}`
-        : `Всего: ${total} ${h.unit || ''}`;
+      sub = todayVal !== null ? `Сегодня: ${todayVal} ${h.unit || ''} · Всего: ${total}` : `Всего: ${total} ${h.unit || ''}`;
       actionHtml = `<button class="habit-action plus" onclick="addNumber('${h.id}')">+</button>`;
     }
 
-    return `
-      <div class="habit-card">
-        <div class="habit-icon" style="background:${cat.bg}">${cat.icon}</div>
-        <div class="habit-body">
-          <div class="habit-title">${escapeHtml(h.name)}</div>
-          <div class="habit-sub">${sub}</div>
-        </div>
-        ${actionHtml}
-      </div>`;
+    return `<div class="habit-card">
+      <div class="habit-icon" style="background:${cat.bg}">${cat.icon}</div>
+      <div class="habit-body">
+        <div class="habit-title">${escapeHtml(h.name)}</div>
+        <div class="habit-sub">${sub}</div>
+      </div>
+      ${actionHtml}
+    </div>`;
   }).join('');
   updateRing();
 }
@@ -590,15 +370,13 @@ function updateRing() {
   const done = state.habits.filter(h => {
     const cat = CATEGORIES[h.category];
     if (!cat) return false;
-    if (cat.type === 'books') return true; // books always "active"
-    if (cat.type === 'money') return getTodayValue(h) !== null && getTodayValue(h) !== undefined;
+    if (cat.type === 'books') return false;
+    if (cat.type === 'money' || cat.type === 'number') return getTodayValue(h) !== null;
     if (cat.type === 'check') return hasToday(h);
-    if (cat.type === 'number') return getTodayValue(h) !== null && getTodayValue(h) !== undefined;
     return false;
   }).length;
   const pct = total ? done / total : 0;
-  const circumference = 213.6;
-  document.querySelector('.ring-progress').style.strokeDashoffset = circumference * (1 - pct);
+  document.querySelector('.ring-progress').style.strokeDashoffset = 213.6 * (1 - pct);
   document.getElementById('ringNumber').textContent = done;
   document.getElementById('ringTotal').textContent = total;
   const hint = document.getElementById('ringHint');
@@ -608,14 +386,77 @@ function updateRing() {
   else hint.textContent = 'Начни отмечать выполнение';
 }
 
-function plural(n, one, few, many) {
-  const mod10 = n % 10, mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-  return many;
-}
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// === Stats screen ===
+function renderStats() {
+  const c = document.getElementById('statsContent');
+  if (!state.habits.length) {
+    c.innerHTML = `<div class="empty"><div class="empty-icon">📊</div><div>Нет данных</div></div>`;
+    return;
+  }
+  const incomes = state.habits.filter(h => h.category === 'income').reduce((s,h) => s + getTotal(h), 0);
+  const expenses = state.habits.filter(h => h.category === 'expense').reduce((s,h) => s + getTotal(h), 0);
+  const savings = state.habits.filter(h => h.category === 'savings').reduce((s,h) => s + getTotal(h), 0);
+  const workouts = state.habits.filter(h => h.category === 'workout').reduce((s,h) => s + getDaysCount(h), 0);
+  const english = state.habits.filter(h => h.category === 'english').reduce((s,h) => s + getDaysCount(h), 0);
+  const skills = state.habits.filter(h => h.category === 'skill').reduce((s,h) => s + getDaysCount(h), 0);
+  const pages = state.habits.filter(h => h.category === 'reading').reduce((s,h) => s + getTotal(h), 0);
+  const booksRead = state.books.filter(b => b.status === 'read').length;
+
+  let html = '';
+
+  if (incomes || expenses || savings) {
+    html += `<div class="section-title">Финансы</div><div class="stat-grid">`;
+    if (incomes) html += `<div class="stat-card"><div class="stat-label">Всего заработано</div><div class="stat-value positive">${formatMoney(incomes)}</div></div>`;
+    if (expenses) html += `<div class="stat-card"><div class="stat-label">Всего потрачено</div><div class="stat-value negative">${formatMoney(expenses)}</div></div>`;
+    if (savings) html += `<div class="stat-card wide"><div class="stat-label">Всего отложено</div><div class="stat-value accent">${formatMoney(savings)}</div></div>`;
+    html += `</div>`;
+  }
+
+  if (workouts || english || skills) {
+    html += `<div class="section-title">Привычки-действия</div><div class="stat-grid">`;
+    if (workouts) html += `<div class="stat-card"><div class="stat-label">Тренировок</div><div class="stat-value">${workouts}</div><div class="stat-sub">${plural(workouts,'день','дня','дней')}</div></div>`;
+    if (english) html += `<div class="stat-card"><div class="stat-label">Английский</div><div class="stat-value">${english}</div><div class="stat-sub">${plural(english,'день','дня','дней')}</div></div>`;
+    if (skills) html += `<div class="stat-card wide"><div class="stat-label">Новые навыки</div><div class="stat-value">${skills}</div><div class="stat-sub">${plural(skills,'день','дня','дней')} практики</div></div>`;
+    html += `</div>`;
+  }
+
+  if (pages || booksRead) {
+    html += `<div class="section-title">Чтение</div><div class="stat-grid">`;
+    if (pages) html += `<div class="stat-card wide"><div class="stat-label">Всего прочитано страниц</div><div class="stat-value">${pages}</div></div>`;
+    if (booksRead) html += `<div class="stat-card wide"><div class="stat-label">Прочитано книг</div><div class="stat-value">${booksRead}</div></div>`;
+    html += `</div>`;
+  }
+
+  const active = state.habits.filter(h => !['books'].includes(h.category));
+  if (active.length) {
+    html += `<div class="section-title">Тепловая карта за 3 месяца</div>`;
+    html += `<div class="heatmap"><div class="heatmap-grid">`;
+    const cells = [];
+    const today = new Date();
+    const start = new Date(today);
+    start.setDate(start.getDate() - 89);
+    const dayCounts = {};
+    state.habits.forEach(h => getEntries(h).forEach(e => {
+      dayCounts[e.date] = (dayCounts[e.date] || 0) + 1;
+    }));
+    for (let i = 0; i < 91; i++) {
+      const d = new Date(start);
+      d.setDate(d.getDate() + i);
+      const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      const count = dayCounts[key] || 0;
+      const pct = active.length ? count / active.length : 0;
+      let lvl = '';
+      if (pct > 0 && pct < 0.25) lvl = 'l1';
+      else if (pct < 0.5) lvl = 'l2';
+      else if (pct < 0.75) lvl = 'l3';
+      else if (pct >= 0.75) lvl = 'l4';
+      cells.push(`<div class="heat-cell ${lvl}" title="${key}: ${count}"></div>`);
+    }
+    html += cells.join('');
+    html += `</div></div>`;
+  }
+
+  c.innerHTML = html;
 }
 
 // === Actions ===
@@ -632,24 +473,21 @@ function toggleCheck(id) {
 function addMoney(id) {
   const h = state.habits.find(x => x.id === id);
   if (!h) return;
-  const cat = CATEGORIES[h.category];
   const existing = getTodayValue(h);
-  const modal = document.getElementById('modal');
   document.getElementById('modalContent').innerHTML = `
-    <h2>${cat.label}</h2>
-    <div class="sub">${existing ? 'Сегодня уже внесено: ' + formatMoney(existing) : 'Введи сумму в рублях'}</div>
-    <input class="modal-input" id="moneyInput" type="number" inputmode="numeric" placeholder="0" autofocus>
-    <button class="btn" onclick="saveMoney('${id}')">Сохранить</button>
-    ${existing ? `<button class="btn danger" onclick="deleteToday('${id}')" style="margin-top:8px">Удалить запись за сегодня</button>` : ''}
+    <h2>${CATEGORIES[h.category].label}</h2>
+    <div class="sub">${existing ? 'Сегодня уже: ' + formatMoney(existing) : 'Введи сумму в рублях'}</div>
+    <input class="modal-input" id="moneyInput" type="number" inputmode="numeric" placeholder="0">
+    <button class="btn" onclick="saveMoney('${id}')">${existing ? 'Добавить ещё' : 'Сохранить'}</button>
+    ${existing ? `<button class="btn danger" onclick="deleteToday('${id}')" style="margin-top:8px">Обнулить за сегодня</button>` : ''}
     <button class="btn secondary" onclick="closeModal()" style="margin-top:8px">Отмена</button>
   `;
-  modal.classList.add('active');
-  setTimeout(() => document.getElementById('moneyInput')?.focus(), 100);
+  document.getElementById('modal').classList.add('active');
+  setTimeout(() => document.getElementById('moneyInput')?.focus(), 150);
 }
-
 function saveMoney(id) {
   const val = parseFloat(document.getElementById('moneyInput').value);
-  if (isNaN(val) || val <= 0) { toast('Введи сумму больше 0'); return; }
+  if (isNaN(val) || val <= 0) { toast('Введи сумму > 0'); return; }
   const h = state.habits.find(x => x.id === id);
   if (!h.entries) h.entries = [];
   const idx = h.entries.findIndex(e => e.date === todayKey());
@@ -662,22 +500,20 @@ function saveMoney(id) {
 function addNumber(id) {
   const h = state.habits.find(x => x.id === id);
   if (!h) return;
-  const cat = CATEGORIES[h.category];
   const existing = getTodayValue(h);
   document.getElementById('modalContent').innerHTML = `
-    <h2>${cat.label}</h2>
+    <h2>${h.name}</h2>
     <div class="sub">${existing ? 'Сегодня уже: ' + existing + ' ' + (h.unit || '') : 'Введи количество'}</div>
-    <input class="modal-input" id="numInput" type="number" inputmode="numeric" placeholder="0" autofocus>
-    <button class="btn" onclick="saveNumber('${id}')">Сохранить</button>
+    <input class="modal-input" id="numInput" type="number" inputmode="numeric" placeholder="0">
+    <button class="btn" onclick="saveNumber('${id}')">${existing ? 'Добавить ещё' : 'Сохранить'}</button>
     <button class="btn secondary" onclick="closeModal()" style="margin-top:8px">Отмена</button>
   `;
   document.getElementById('modal').classList.add('active');
-  setTimeout(() => document.getElementById('numInput')?.focus(), 100);
+  setTimeout(() => document.getElementById('numInput')?.focus(), 150);
 }
-
 function saveNumber(id) {
   const val = parseFloat(document.getElementById('numInput').value);
-  if (isNaN(val) || val <= 0) { toast('Введи число больше 0'); return; }
+  if (isNaN(val) || val <= 0) { toast('Введи число > 0'); return; }
   const h = state.habits.find(x => x.id === id);
   if (!h.entries) h.entries = [];
   const idx = h.entries.findIndex(e => e.date === todayKey());
@@ -691,16 +527,19 @@ function deleteToday(id) {
   const h = state.habits.find(x => x.id === id);
   if (!h) return;
   h.entries = (h.entries || []).filter(e => e.date !== todayKey());
-  save(); closeModal(); renderToday();
-  toast('Запись удалена');
+  save(); closeModal(); renderToday(); toast('Обнулено');
 }
 
-// === Add habit ===
+// === Add habit modal ===
 let selectedType = null;
 function openAddModal() {
   selectedType = null;
   renderAddModal();
   document.getElementById('modal').classList.add('active');
+}
+function selectType(key) {
+  selectedType = key;
+  renderAddModal();
 }
 function renderAddModal() {
   const types = [
@@ -713,15 +552,104 @@ function renderAddModal() {
     { key: 'reading', label: 'Чтение',      emoji: '📖' },
     { key: 'books',   label: 'Книги',       emoji: '📚' },
   ];
+  const cat = selectedType ? CATEGORIES[selectedType] : null;
   document.getElementById('modalContent').innerHTML = `
     <h2>Новая привычка</h2>
     <div class="sub">Выбери тип</div>
     <div class="type-grid">
-      ${types.map(t => `
-        <button class="type-btn ${selectedType===t.key?'selected':''}" onclick="selectType('${t.key}')">
-          <span class="emoji">${t.emoji}</span>
-          <span class="label">${t.label}</span>
-        </button>
-      `).join('')}
+      ${types.map(t => `<button class="type-btn ${selectedType===t.key?'selected':''}" onclick="selectType('${t.key}')"><span class="emoji">${t.emoji}</span><span class="label">${t.label}</span></button>`).join('')}
     </div>
-    <input class="modal-input" id
+    ${selectedType ? `
+      <input class="modal-input" id="habitName" placeholder="${cat.label}" value="${cat.label}">
+      ${selectedType === 'reading' ? `<input class="modal-input" id="habitUnit" placeholder="Единица (стр., мин. и т.д.)" value="стр.">` : ''}
+      <button class="btn" onclick="saveHabit()">Добавить</button>
+    ` : ''}
+    <button class="btn secondary" onclick="closeModal()" style="margin-top:8px">Отмена</button>
+  `;
+  setTimeout(() => document.getElementById('habitName')?.focus(), 150);
+}
+function saveHabit() {
+  if (!selectedType) { toast('Выбери тип'); return; }
+  const name = document.getElementById('habitName')?.value?.trim() || CATEGORIES[selectedType].label;
+  const unit = document.getElementById('habitUnit')?.value?.trim() || '';
+  state.habits.push({
+    id: 'h_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+    name, category: selectedType, unit, entries: []
+  });
+  save(); haptic('success'); closeModal(); renderToday();
+  toast('Привычка добавлена');
+}
+
+// === Books ===
+function openBooksModal() {
+  renderBooksModal();
+  document.getElementById('modal').classList.add('active');
+}
+function renderBooksModal() {
+  const books = state.books;
+  document.getElementById('modalContent').innerHTML = `
+    <h2>Книги</h2>
+    <div class="sub">Прочитано: ${books.filter(b=>b.status==='read').length} · Читаю: ${books.filter(b=>b.status==='reading').length}</div>
+    <input class="modal-input" id="bookInput" placeholder="Название книги">
+    <button class="btn" onclick="addBook()">Добавить в «Читаю»</button>
+    <div style="margin-top:20px">
+      ${books.length ? books.map((b,i) => `
+        <div class="book-item">
+          <div class="book-cover">${b.status === 'read' ? '✓' : '📖'}</div>
+          <div>
+            <div class="book-title">${escapeHtml(b.title)}</div>
+            <div class="book-status">${b.status === 'read' ? 'Прочитано' : 'Читаю'}</div>
+          </div>
+          ${b.status === 'reading' ? `<button class="book-btn" onclick="finishBook(${i})">Прочитал</button>` : `<button class="book-btn" onclick="deleteBook(${i})" style="color:var(--red)">Удалить</button>`}
+        </div>
+      `).join('') : '<div class="empty" style="padding:20px 0">Пока нет книг</div>'}
+    </div>
+    <button class="btn secondary" onclick="closeModal()" style="margin-top:12px">Закрыть</button>
+  `;
+}
+function addBook() {
+  const title = document.getElementById('bookInput').value.trim();
+  if (!title) { toast('Введи название'); return; }
+  state.books.push({ title, status: 'reading', added: todayKey() });
+  save(); haptic('success'); renderBooksModal(); renderToday();
+}
+function finishBook(i) {
+  state.books[i].status = 'read';
+  state.books[i].finished = todayKey();
+  save(); haptic('success'); renderBooksModal(); renderToday();
+  toast('Книга прочитана! 🎉');
+}
+function deleteBook(i) {
+  state.books.splice(i, 1);
+  save(); renderBooksModal(); renderToday();
+}
+
+// === Navigation ===
+function switchScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(name + 'Screen').classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.screen === name));
+  if (name === 'stats') renderStats();
+  else renderToday();
+  haptic('light');
+}
+
+function closeModal(e) {
+  if (e && e.target && e.target.id !== 'modal') return;
+  document.getElementById('modal').classList.remove('active');
+}
+
+// === Init ===
+document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
+const hour = new Date().getHours();
+let greet = 'Привет!';
+if (hour < 6) greet = 'Доброй ночи';
+else if (hour < 12) greet = 'Доброе утро';
+else if (hour < 18) greet = 'Добрый день';
+else greet = 'Добрый вечер';
+document.getElementById('greeting').textContent = greet;
+
+renderToday();
+</script>
+</body>
+</html>
